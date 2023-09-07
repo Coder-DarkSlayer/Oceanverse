@@ -1,0 +1,1 @@
+print("“Namasthey India”") #prints namastey india in the terminal
