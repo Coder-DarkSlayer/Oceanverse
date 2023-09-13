@@ -14,6 +14,7 @@ def quickSort(lst, start , end): # quick sort function
         temp = partition(lst , start , end) # temp is the partition function
         quickSort(lst , start, temp -1) # recursive call to quick sort function
         quickSort(lst , temp + 1 , end) # recursive call to quick sort function
+        return lst # return sorted list
 
 if __name__ == '__main__': #driver code
     x = [1,44,55,2,66,3,55,46,46,34,95,9,47,45,37] #list to be sorted
