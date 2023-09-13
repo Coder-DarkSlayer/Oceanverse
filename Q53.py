@@ -1,25 +1,20 @@
-def addList(l1,l2,l3): # function to add lists and the pivot
-    l1.append(l2) #appending pivot to the list
-    for i in l3: #iterating through the list
-        l1.append(i) #appending the elements of the list to the list
-    return l1   #returning the list
+def partition(lst , start , end): # partition function
+    pivot = lst[end] # pivot is the last element of the list
 
-def quickSort(lst):
-    if len(lst) == 1 or len(lst) == 0: #if list has emptied or listhas one element return it
-        return lst #return the list
-    else:
-        pivot = lst.pop(-1) #choosing last element of list as pivot
-        last = [] #empty list
-        i = 0 #initializing i
-        while i < len(lst): #running loop for elements in the list
-            if lst[i] > pivot: #if the element is greater than pivot
-                last.append(lst.pop(i)) #append the element to the last list
-            else: #if the element is less than pivot
-                i+=1 #increment i
-                
-        return addList(quickSort(lst),pivot,quickSort(last)) # calling add function
+    while start < end: # while start is less than end
+        if lst[start]>pivot: # if the element at start is greater than pivot
+            lst.insert(end , lst.pop(start)) # insert the element at end and pop the element at start
+            end -= 1 # decrement end
+        else: # if the element at start is less than pivot
+            start += 1 # increment start
+    return end # return end
 
-x = [1,44,55,2,66,3,55,46,46,34,95,9,47,45,37] #list to be sorted
+def quickSort(lst, start , end): # quick sort function
+    if start < end: # if start is less than end
+        temp = partition(lst , start , end) # temp is the partition function
+        quickSort(lst , start, temp -1) # recursive call to quick sort function
+        quickSort(lst , temp + 1 , end) # recursive call to quick sort function
 
 if __name__ == '__main__': #driver code
-    print(quickSort(x))
+    x = [1,44,55,2,66,3,55,46,46,34,95,9,47,45,37] #list to be sorted
+    print(quickSort(x,0,len(x)-1))
